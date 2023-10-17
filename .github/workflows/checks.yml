@@ -19,6 +19,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Upgrade pip
+        run: docker-compose run --rm app sh -c "python -m pip install --upgrade pip"
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
       - name: Lint
